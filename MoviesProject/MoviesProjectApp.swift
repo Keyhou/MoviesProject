@@ -12,6 +12,7 @@ struct MoviesProjectApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            MovieDetailView(movie: movies[0])
         }
     }
 }
