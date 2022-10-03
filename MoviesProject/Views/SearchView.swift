@@ -67,7 +67,7 @@ struct SearchView: View {
     @State private var updatedMovies = movies
     @State private var searchText = ""
     
-    @State var apimovie: APIMovie = APIMovie(id: "", title: "", originalTitle: "", fullTitle: "", type: "", year: "", image: "")
+    @State var apimovie: APIMovie = APIMovie(id: 0, overview: "", poster_path: "", release_date: "", title: "")
     @State var movieToSearch = ""
     
     var body: some View {
@@ -77,53 +77,67 @@ struct SearchView: View {
                 TextField("Type the movie name...", text: $movieToSearch)
                     .padding(.leading)
                     .frame(width: 300.0, height: 80)
-                    .border(Color.black, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                    .border(Color.black, width: 1)
                 Button {
                     Task {
-                        apimovie = try await getMovieInfos(movieTyped: movieToSearch)
+                        apimovie = try await getMovieInfosThree(movieTyped: movieToSearch)
                     }
                 } label: {
                     Text("Search")
                         .font(.title)
                         .fontWeight(.semibold)
                 }
-//                .searchable(text: $userToSearch,  placement: .navigationBarDrawer(displayMode: .always))
+                //                .searchable(text: $userToSearch,  placement: .navigationBarDrawer(displayMode: .always))
                 
-                Text("The infos you're looking for")
-                    .font(.caption)
+                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original/\(apimovie.poster_path)")) { image in
+                    image.resizable()
+                } placeholder: {
+                    Color.black
+                }
+                .frame(width: 250, height: 400)
+                .clipShape(RoundedRectangle(cornerRadius: 25))
+                
+                
+//                Text("The infos you're looking for")
+//                    .font(.caption)
                 Text("Title: \(apimovie.title)")
                     .font(.title)
                     .fontWeight(.semibold)
+                Text("Release Date: \(apimovie.release_date)")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                Text("Synopsis: \(apimovie.overview)")
                 
-//                Text(
+                //                Text(
             }
+            .padding(.horizontal)
             
-//            VStack {
-//                List {
-//                    ForEach(searchResults, id: \.self) { movie in
-//                        NavigationLink {
-//                            MovieDetailView(movie: movie)
-//                        } label: {
-//                            MovieRow(title: movie.title, year: movie.year)
-//                        }
-//                    }
-//                }
-//                .searchable(text: $searchText)
-//                .navigationTitle("Movies")
-//                .navigationBarTitleDisplayMode(.inline)
-//                .navigationBarItems(trailing:
-//                                        Button {
-//                    addingSheet.toggle()
-//                } label: {
-//                    Image(systemName: "plus.circle.fill")
-//                        .accentColor(.pink)
-//                }
-//                    .sheet(isPresented: $addingSheet) {
-//                        AddMovieView(addMovie: $addingSheet, updatedMovies: $updatedMovies)
-//                    }
-//                )
-//
-//            }
+            //            VStack {
+            //                List {
+            //                    ForEach(searchResults, id: \.self) { movie in
+            //                        NavigationLink {
+            //                            MovieDetailView(movie: movie)
+            //                        } label: {
+            //                            MovieRow(title: movie.title, year: movie.year)
+            //                        }
+            //                    }
+            //                }
+            //                .searchable(text: $searchText)
+            //                .navigationTitle("Movies")
+            //                .navigationBarTitleDisplayMode(.inline)
+            //                .navigationBarItems(trailing:
+            //                                        Button {
+            //                    addingSheet.toggle()
+            //                } label: {
+            //                    Image(systemName: "plus.circle.fill")
+            //                        .accentColor(.pink)
+            //                }
+            //                    .sheet(isPresented: $addingSheet) {
+            //                        AddMovieView(addMovie: $addingSheet, updatedMovies: $updatedMovies)
+            //                    }
+            //                )
+            //
+            //            }
         }
     }
     var searchResults: [Movie] {

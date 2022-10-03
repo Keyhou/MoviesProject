@@ -23,6 +23,7 @@
 		EF54D67E28D9F540006E4107 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF54D67D28D9F540006E4107 /* MovieModel.swift */; };
 		EF54D68128D9F5F2006E4107 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF54D68028D9F5F2006E4107 /* MovieData.swift */; };
 		EFC1C7DC28DC95A9006AB531 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC1C7DB28DC95A9006AB531 /* UserModel.swift */; };
+		EFF22A6228EB2BBD0031572A /* APIListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF22A6128EB2BBD0031572A /* APIListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		EF54D67D28D9F540006E4107 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		EF54D68028D9F5F2006E4107 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		EFC1C7DB28DC95A9006AB531 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		EFF22A6128EB2BBD0031572A /* APIListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				EF1742AA28D9B5A50086FC0D /* MovieDetailView.swift */,
 				EF201F9028DB173D009DEA3E /* AddMovieView.swift */,
 				EF0E107B28EAE77E0040B57E /* SearchView.swift */,
+				EFF22A6128EB2BBD0031572A /* APIListView.swift */,
 				EF35123028DB5913009A7C63 /* ProfilView.swift */,
 				EF17428228D9B2690086FC0D /* ContentView.swift */,
 			);
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF0E107C28EAE77E0040B57E /* SearchView.swift in Sources */,
+				EFF22A6228EB2BBD0031572A /* APIListView.swift in Sources */,
 				EF54D68128D9F5F2006E4107 /* MovieData.swift in Sources */,
 				EF1742AB28D9B5A50086FC0D /* MovieDetailView.swift in Sources */,
 				EF35123128DB5913009A7C63 /* ProfilView.swift in Sources */,

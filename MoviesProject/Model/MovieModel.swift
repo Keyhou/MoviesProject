@@ -60,26 +60,26 @@ var movies = [
         """, isFavorite: false)
 ]
 
-func getMovieInfos(movieTyped: String) async throws -> (APIMovie) {
-    guard let url = URL(string: "https://imdb-api.com/en/API/Search/k_wgl156sn/\(movieTyped)")
-    else {
-        fatalError("Missing URL")
-    }
-    var urlRequest = URLRequest(url: url)
-    urlRequest.httpMethod = "GET"
-    
-    let (data, response) = try await URLSession.shared.data(for: urlRequest)
-    
-    guard (response as? HTTPURLResponse)?.statusCode == 200
-    else {
-        fatalError("Error while fetching data")
-    }
-//        let decoder = JSONDecoder()
-//        decoder.keyDecodingStrategy = .convertFromSnakeCase
-//        let decoded = try decoder.decode(User.self, from: data)
-    
-    let decoded = try JSONDecoder().decode(APIMovie.self, from: data)
-    print(decoded)
-    return decoded
-}
+//func getMovieInfos(movieTyped: String) async throws -> (APIMovie) {
+//    guard let url = URL(string: "https://imdb-api.com/en/API/Search/k_wgl156sn/\(movieTyped)")
+//    else {
+//        fatalError("Missing URL")
+//    }
+//    var urlRequest = URLRequest(url: url)
+//    urlRequest.httpMethod = "GET"
+//    
+//    let (data, response) = try await URLSession.shared.data(for: urlRequest)
+//    
+//    guard (response as? HTTPURLResponse)?.statusCode == 200
+//    else {
+//        fatalError("Error while fetching data")
+//    }
+////        let decoder = JSONDecoder()
+////        decoder.keyDecodingStrategy = .convertFromSnakeCase
+////        let decoded = try decoder.decode(User.self, from: data)
+//    
+//    let decoded = try JSONDecoder().decode(APIMovie.self, from: data)
+//    print(decoded)
+//    return decoded
+//}
 
