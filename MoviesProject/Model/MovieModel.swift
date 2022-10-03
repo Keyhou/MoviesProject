@@ -23,12 +23,12 @@ import Foundation
 //    static var data: [MovieModel] = [MovieModel(title: "Les Infiltrés", director: "Martin Scorcèse", year: 2006, poster: "LesInfiltrés", movieType: "Action", synopsis: "À Boston, une lutte sans merci oppose la police à la mafia irlandaise dirigée par Frank Costello, parrain des quarters sud. Ce dernierva racketter une épicerie et repère un enfant, Colin Sullivan. Il lui fait comprendre commentle monde marche."), MovieModel(title: "Les Infiltrés", director: "Martin Scorcèse", year: 2006, poster: "LesInfiltrés", movieType: "Action", synopsis: "À Boston, une lutte sans merci oppose la police à la mafia irlandaise dirigée par Frank Costello, parrain des quarters sud. Ce dernierva racketter une épicerie et repère un enfant, Colin Sullivan. Il lui fait comprendre commentle monde marche."), MovieModel(title: "Les Infiltrés", director: "Martin Scorcèse", year: 2006, poster: "LesInfiltrés", movieType: "Action", synopsis: "À Boston, une lutte sans merci oppose la police à la mafia irlandaise dirigée par Frank Costello, parrain des quarters sud. Ce dernierva racketter une épicerie et repère un enfant, Colin Sullivan. Il lui fait comprendre commentle monde marche.")]
 //}
 
-enum Gender: String, CaseIterable, Identifiable {
+enum Gender: String, CaseIterable, Identifiable, Decodable {
     case Thriller, Romantique, Action, Drame
     var id: Self { self }
 }
 
-struct Movie: Identifiable, Hashable {
+struct Movie: Identifiable, Hashable, Decodable {
     var id = UUID()
     let title: String
     let director: String
@@ -38,6 +38,7 @@ struct Movie: Identifiable, Hashable {
     let description: String
     var isFavorite: Bool
 }
+
 
 extension Movie {
     static var preview: Movie {
@@ -58,3 +59,27 @@ var movies = [
         While exploring the uncharted wilderness in 1823, frontiersman Hugh Glass (Leonardo DiCaprio) sustains life-threatening injuries from a brutal bear attack. When a member (Tom Hardy) of his hunting team kills his young son (Forrest Goodluck) and leaves him for dead, Glass must utilize his survival skills to find a way back to civilization. Grief-stricken and fueled by vengeance, the legendary fur trapper treks through the snowy terrain to track down the man who betrayed him.
         """, isFavorite: false)
 ]
+
+func getMovieInfos(movieTyped: String) async throws -> (APIMovie) {
+    guard let url = URL(string: "https://imdb-api.com/en/API/Search/k_wgl156sn/\(movieTyped)")
+    else {
+        fatalError("Missing URL")
+    }
+    var urlRequest = URLRequest(url: url)
+    urlRequest.httpMethod = "GET"
+    
+    let (data, response) = try await URLSession.shared.data(for: urlRequest)
+    
+    guard (response as? HTTPURLResponse)?.statusCode == 200
+    else {
+        fatalError("Error while fetching data")
+    }
+//        let decoder = JSONDecoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//        let decoded = try decoder.decode(User.self, from: data)
+    
+    let decoded = try JSONDecoder().decode(APIMovie.self, from: data)
+    print(decoded)
+    return decoded
+}
+

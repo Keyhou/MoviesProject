@@ -1,10 +1,13 @@
-////
-////  MoviesListView.swift
-////  MoviesProject
-////
-////  Created by Apprenant n°15 Keyhan Mortezaeifar on 20/09/2022.
-////
 //
+//  MoviesListView.swift
+//  MoviesProject
+//
+//  Created by Apprenant n°15 Keyhan Mortezaeifar on 20/09/2022.
+//
+
+// First part of the exercise with static datas
+
+
 import SwiftUI
 //
 //struct MoviesListView: View {

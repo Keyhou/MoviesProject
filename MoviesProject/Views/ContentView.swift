@@ -12,7 +12,11 @@ struct ContentView: View {
         TabView {
             MoviesView()
                 .tabItem {
-                    Label("Films", systemImage: "film.circle.fill")
+                    Label("Movie Static", systemImage: "film.circle.fill")
+                }
+            SearchView()
+                .tabItem {
+                    Label("iMBD", systemImage: "magnifyingglass")
                 }
             ProfilView()
                 .tabItem {
